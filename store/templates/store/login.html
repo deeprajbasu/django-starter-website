@@ -1,0 +1,125 @@
+
+{% load static %}
+
+<head>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+
+
+      <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+</head>
+<body>
+<div id = "aa"></div>
+
+<script>
+    
+    var user = '{{request.user}}'
+
+    function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+        }
+    const csrftoken = getToken('csrftoken');
+
+
+
+
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+    apiKey: "AIzaSyBpXILnoS8eMDQFD5LilopO-BlFKcrnUQw",
+    authDomain: "banana-store-b1246.firebaseapp.com",
+    databaseURL: "https://banana-store-b1246.firebaseio.com",
+    projectId: "banana-store-b1246",
+    storageBucket: "banana-store-b1246.appspot.com",
+    messagingSenderId: "285607461300",
+    appId: "1:285607461300:web:33c63aaf063f923c47f2e1"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    console.log("aaaa")
+
+
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    var provider = new firebase.auth.GoogleAuthProvider();
+    console.log("aaaa")
+
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        
+        console.log(user);
+        sendauth(user);
+        console.log('datasent')
+        
+
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      })
+
+      
+
+function sendauth(user){
+    console.log('user is logged sending data')
+    var url = '/Login/'
+    console.log(user);
+    fetch(url,{
+        method:'POST',
+        headers:{'content-type':'application/json',
+                 'X-CSRFToken':csrftoken,
+                },
+                //send data to backend t*****************
+                body:JSON.stringify({'user':user})
+    
+    }).then(
+    function(response) {
+
+      console.log(response)
+      console.log(response.url)
+      window.location.replace(response.url);
+      return;  }  )
+
+
+    
+
+}
+
+
+</script>
+
+
+
+
+</body>
