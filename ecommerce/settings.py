@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '!2(wbf=jz2ljz7#=(zq)o!(7h+i@k$af0=tk!ko3+jczc!9@vv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['django-minimal-ecommerce.herokuapp.com','127.0.0.1']
 
@@ -122,10 +122,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS=(
-    os.path.join(BASE_DIR,'static'),
+    os.path.join(BASE_DIR,'static/'),
     )
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'static/images')
 
