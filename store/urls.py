@@ -10,6 +10,7 @@ path('update_item/',views.updateItem,name='update_item'),
 path('item_details/',views.showItemDetails,name='item_details'),
 path('process_order/',views.processOrder,name='process_order'),
 path('Login/',views.Login,name='login'),
+path('Logout/',views.Logout,name='logout'),
 # path('authuser/',views.authuser,name='authuser'),
 
 ]

@@ -138,6 +138,15 @@ def showItemDetails(request):
     return page
 
 from django.contrib.auth import authenticate
+
+
+def Logout (request):
+    print("hi")
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect('store')
+
+
 def Login (request):
     print(request.user)
     
@@ -166,7 +175,7 @@ def Login (request):
             print("createdCustomer")
             login(request,user)
             print(user)
-            return JsonResponse('YY',safe=False)
+            return redirect('store')
     
     return render(request,'store/login.html')
 
