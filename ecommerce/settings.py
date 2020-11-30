@@ -25,7 +25,7 @@ SECRET_KEY = '!2(wbf=jz2ljz7#=(zq)o!(7h+i@k$af0=tk!ko3+jczc!9@vv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-minimal-ecommerce.herokuapp.com','127.0.0.1:8000']
+ALLOWED_HOSTS = ['django-minimal-ecommerce.herokuapp.com','127.0.0.1']
 
 
 # Application definition
