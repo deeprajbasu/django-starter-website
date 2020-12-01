@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '!2(wbf=jz2ljz7#=(zq)o!(7h+i@k$af0=tk!ko3+jczc!9@vv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['django-minimal-ecommerce.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['django-minimal-ecommerce.herokuapp.com','127.0.0.1:8000']
 
 
 # Application definition
@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
@@ -118,13 +119,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS=(
-    os.path.join(BASE_DIR,'static/'),
-    )
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static')
+    ]
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'static/images')
 
