@@ -143,7 +143,7 @@ from django.contrib.auth import authenticate
 def Logout (request):
     print("hi")
     if request.user.is_authenticated:
-        logout(request,user)
+        logout(request)
         return redirect('store')
 
 
