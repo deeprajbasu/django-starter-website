@@ -6,6 +6,7 @@ from django.http import JsonResponse
 import json
 import datetime
 from django.contrib.auth.models import User
+from django.template import RequestContext
 
 from . utils import cookieCart,cartData,guestOrder
 # Create your views here.
@@ -26,7 +27,7 @@ def store(request):
 
     cartitems = cartData(request)['cartitems']
 
-
+    context_instance = RequestContext(request)
     products= Product.objects.all()
     context={'products':products,'cartitems':cartitems}
     return render(request,'store/store.html',context)
