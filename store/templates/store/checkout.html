@@ -143,6 +143,7 @@
 				headers:{'content-type':'application/json',
 						'X-CSRFToken':csrftoken,
 						},
+						credentials: 'include',
 						//send data to backend to update order and cart*****************
 						body:JSON.stringify({'form':userFormData,'shipping':shippingInfo})
 			

@@ -76,6 +76,7 @@ function updateUserOrder(productID,action){
         headers:{'content-type':'application/json',
                  'X-CSRFToken':csrftoken,
                 },
+                credentials: 'include',
                 //send data to backend to update order and cart*****************
                 body:JSON.stringify({'productID':productID,'action':action})
     
@@ -96,6 +97,7 @@ function show_item(productID,action){
         headers:{'content-type':'application/json',
                  'X-CSRFToken':csrftoken,
                 },
+                credentials: 'include',
                 //send data to backend to update order and cart*****************
                 body:JSON.stringify({'productID':productID,'action':action})
     
